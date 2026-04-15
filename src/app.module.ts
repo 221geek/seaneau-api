@@ -6,6 +6,9 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ClientsModule } from './clients/clients.module';
 import { MetersModule } from './meters/meters.module';
+import { BillingModule } from './billing/billing.module';
+import { InterventionsModule } from './interventions/interventions.module';
+import { ZonesModule } from './zones/zones.module';
 import { CommonModule } from './common/common.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
@@ -25,6 +28,9 @@ import { AllExceptionsFilter } from './common/filters/http-exception.filter';
     UsersModule,
     ClientsModule,
     MetersModule,
+    BillingModule,
+    InterventionsModule,
+    ZonesModule,
     CommonModule,
   ],
   providers: [
