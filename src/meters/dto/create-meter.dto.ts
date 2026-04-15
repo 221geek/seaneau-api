@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { MeterType, MeterStatus } from '../schemas/meter.schema';
+import { MeterStatus } from '../schemas/meter.schema';
 
 export class LocationDto {
   @ApiProperty({ example: 'Dakar, Médina, Rue 22' })
@@ -34,21 +34,21 @@ export class CreateMeterDto {
   @IsNotEmpty()
   serialNumber: string;
 
-  @ApiProperty({ enum: MeterType, example: MeterType.DIGITAL })
-  @IsEnum(MeterType)
+  @ApiProperty({ example: 'SmartFlow v4' })
+  @IsString()
   @IsNotEmpty()
-  type: MeterType;
+  type: string;
 
   @ApiPropertyOptional({ enum: MeterStatus, default: MeterStatus.INACTIVE })
   @IsEnum(MeterStatus)
   @IsOptional()
   status?: MeterStatus;
 
-  @ApiProperty({ type: LocationDto })
+  @ApiPropertyOptional({ type: LocationDto })
   @ValidateNested()
   @Type(() => LocationDto)
-  @IsNotEmpty()
-  location: LocationDto;
+  @IsOptional()
+  location?: LocationDto;
 
   @ApiPropertyOptional({ description: 'ID du client' })
   @IsString()

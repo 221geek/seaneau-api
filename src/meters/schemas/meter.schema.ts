@@ -5,15 +5,11 @@ import { Client } from '../../clients/schemas/client.schema';
 
 export type MeterDocument = HydratedDocument<Meter>;
 
-export enum MeterType {
-  MECHANICAL = 'MECHANICAL',
-  DIGITAL = 'DIGITAL',
-}
-
 export enum MeterStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
-  SUSPENDED = 'SUSPENDED',
+  MAINTENANCE = 'MAINTENANCE',
+  FAULTY = 'FAULTY',
 }
 
 export class MeterLocation {
@@ -33,9 +29,9 @@ export class Meter {
   @Prop({ required: true, unique: true, trim: true })
   serialNumber: string;
 
-  @ApiProperty({ enum: MeterType })
-  @Prop({ required: true, enum: MeterType })
-  type: MeterType;
+  @ApiProperty({ example: 'SmartFlow v4' })
+  @Prop({ required: true, trim: true })
+  type: string;
 
   @ApiProperty({ enum: MeterStatus })
   @Prop({ required: true, enum: MeterStatus, default: MeterStatus.INACTIVE })

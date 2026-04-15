@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { MeterType, MeterStatus } from '../schemas/meter.schema';
+import { MeterStatus } from '../schemas/meter.schema';
 import { LocationDto } from './create-meter.dto';
 
 export class UpdateMeterDto {
@@ -16,10 +16,10 @@ export class UpdateMeterDto {
   @IsOptional()
   serialNumber?: string;
 
-  @ApiPropertyOptional({ enum: MeterType })
-  @IsEnum(MeterType)
+  @ApiPropertyOptional({ example: 'SmartFlow v4' })
+  @IsString()
   @IsOptional()
-  type?: MeterType;
+  type?: string;
 
   @ApiPropertyOptional({ enum: MeterStatus })
   @IsEnum(MeterStatus)
